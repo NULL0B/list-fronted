@@ -3,7 +3,7 @@
 This is the frontend application for the Todo List, built with Next.js, TypeScript, and Tailwind CSS.
 
 # Live at
-https://todo-list-f72bb.web.app
+https://todo-list-f72bb.web.app (firebase branch)
 
 ## Prerequisites
 
