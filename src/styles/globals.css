@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-main {
+        @apply bg-accents-blue2 font-bold text-accents-gray text-[14px] rounded-[8px] w-full h-[52px] flex items-center justify-center gap-2;
+    }
+
+    .absolute-btn {
+        @apply absolute;
+        top: calc(-91px - 52px / 2);
+    }
+
+
+    .chip {
+        @apply rounded-full bg-accents-dgray text-accents-dgray2 font-bold text-[12px] h-[19px] leading-[19px] pr-[8px] pb-[2px] pl-[8px];
+    }
+
+    .custom-checkbox {
+        height: 18px;
+        width: 18px;
+        appearance: none;
+        border-radius: 9999px;
+        border-width: 2px;
+        @apply border-accents-blue;
+        background-color: transparent;
+        position: relative;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+    .custom-checkbox:checked {
+        @apply bg-accents-purple border-accents-purple;
+    }
+
+    .custom-checkbox::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 45%;
+        width: 0.5rem;
+        height: 0.25rem;
+        border-width: 1.5px;
+        @apply border-accents-gray;
+        border-top: 0;
+        border-right: 0;
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1.2);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .custom-checkbox:checked::after {
+        opacity: 1;
+    }
+}
