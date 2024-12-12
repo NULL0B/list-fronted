@@ -1,22 +1,21 @@
 'use client';
 
-import {useRouter} from 'next/navigation';
+import {useSearchParams, useRouter as useNavigationRouter} from 'next/navigation';
 import {useEffect, useState} from 'react';
 import {Task} from '@/types/task';
 import {getTask, updateTask} from '@/services/tasks';
 import {TaskForm} from '@/components/TaskForm';
-import {useParams} from 'next/navigation';
 
 export default function EditTaskPage() {
-    const router = useRouter();
     const [task, setTask] = useState<Task | null>(null);
     const [error, setError] = useState('');
-    const params = useParams<{id: string}>();
-
+    const searchParams = useSearchParams();
+    const id = searchParams.get('id') || '-1';
+    const navRouter = useNavigationRouter();
     useEffect(() => {
         const fetchTask = async () => {
             try {
-                const data = await getTask(params.id);
+                const data = await getTask(id);
                 setTask(data);
             } catch (err) {
                 setError('Failed to load task');
@@ -25,15 +24,15 @@ export default function EditTaskPage() {
         };
 
         fetchTask();
-    }, [params.id]);
+    }, [id]);
 
     const handleSubmit = async (data: any) => {
         setError('');
 
         try {
-            await updateTask(params.id, data);
-            router.push('/');
-            router.refresh();
+            await updateTask(id, data);
+            navRouter.push('/');
+            navRouter.refresh();
         } catch (err) {
             setError('Failed to update task');
             console.error(err);
@@ -49,7 +48,7 @@ export default function EditTaskPage() {
             <TaskForm
                 initialData={task}
                 onSubmit={handleSubmit}
-                onCancel={() => router.push('/')}
+                onCancel={() => navRouter.push('/')}
             />
         </>
     );

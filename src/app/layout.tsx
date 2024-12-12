@@ -1,14 +1,11 @@
-import type {Metadata} from 'next';
+'use client';
+
 import {Inter} from 'next/font/google';
 import {Toaster} from 'react-hot-toast';
-import React from "react";
+import React, {Suspense} from "react";
 import '../styles/globals.css';
-const interFont = Inter({subsets: ['latin']});
 
-export const metadata: Metadata = {
-    title: 'Todo List App',
-    description: 'A simple todo list application',
-};
+const interFont = Inter({subsets: ['latin']});
 
 export default function RootLayout({
                                        children,
@@ -24,9 +21,11 @@ export default function RootLayout({
                 <span className="text-accents-blue">Todo</span> <span className="text-accents-purple">App</span></h1>
         </div>
         <main className="h-full">
-            <div className="container mx-auto max-w-[736px] py-[91px]">
-                {children}
-            </div>
+            <Suspense>
+                <div className="container mx-auto max-w-[736px] py-[91px]">
+                    {children}
+                </div>
+            </Suspense>
         </main>
         <Toaster position="bottom-right"/>
         </body>

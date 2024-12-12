@@ -1,3 +1,5 @@
+'use client';
+
 import { CreateTaskInput, Task } from '@/types/task';
 import React, { useState, useEffect } from 'react';
 import clsx from "clsx";

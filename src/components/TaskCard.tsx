@@ -1,3 +1,5 @@
+'use client';
+
 import {Task} from '@/types/task';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -20,7 +22,7 @@ export function TaskCard({task, onToggleComplete, onDelete}: TaskCardProps) {
                     className="custom-checkbox"
                 />
                 <Link
-                    href={`/edit/${task.id}`}
+                    href={`/edit?id=${task.id}`}
                     className="flex-1 flex items-start"
                 >
                         <span className={clsx(
